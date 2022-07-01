@@ -21,8 +21,8 @@
         <br>
         <label for="heart_disease">Memiliki riwayat sakit jantung?</label>
         <select name="heart_disease" id="heart_disease" name="heart_disease">
-            <option value="0">Tidak</option>
-            <option value="1">Ya</option>
+            <option value="0" {{ (isset($heart_disease) && $heart_disease == 0)? 'selected' : '' }}>Tidak</option>
+            <option value="1" {{ (isset($heart_disease) && $heart_disease == 1)? 'selected' : '' }}>Ya</option>
         </select>
         <br>
         <label for="avg_glucose_level">Rata-rata nilai glukosa</label>
