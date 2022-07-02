@@ -16,4 +16,4 @@ use App\Http\Controllers\DashboardController;
 
 Route::get('/', [DashboardController::class, 'index']);
 Route::post('/', [DashboardController::class, 'index'])->name('predict');
-// Route::post('/reset', [DashboardController::class, 'reset'])->name('reset');
+Route::post('/reset', [DashboardController::class, 'reset'])->name('reset');

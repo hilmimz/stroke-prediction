@@ -16,14 +16,14 @@ class DashboardController extends Controller
         $mean1 = MeanSumm1Model::all()->toArray();
         $std0 = StdSumm0Model::all()->toArray();
         $std1 = StdSumm1Model::all()->toArray();
-        $age = $request->get('age');
         
         //request
+        $age = $request->get('age');
         $hypertension = $request->get('hypertension');
         $heart_disease = $request->get('heart_disease');
         $avg_glucose_level = $request->get('avg_glucose_level');
         $bmi = $request->get('bmi');
-        $result = null;
+        // $result = null;
 
         //calculate class 0
         $age0 = $this->gaussianPDF($mean0[0]['age'], $std0[0]['age'], $age);
@@ -48,12 +48,29 @@ class DashboardController extends Controller
             'hypertension',
             'heart_disease',
             'avg_glucose_level',
-            'bmi'
+            'bmi',
+            'age0',
+            'hypertension0',
+            'heart_disease0',
+            'avg_glucose_level0',
+            'bmi0',
+            'age1',
+            'hypertension1',
+            'heart_disease1',
+            'avg_glucose_level1',
+            'bmi1',
+            'class0',
+            'class1'
         ]));
     }
 
-    public function reset(){
-        session_unset();
+    public function reset(Request $request){
+        $request->session()->flush();
+        $request()->request->remove('age',
+        'hypertension',
+        'heart_disease',
+        'avg_glucose_level',
+        'bmi',);
         return redirect('/');
     }
     
